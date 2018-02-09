@@ -85,37 +85,117 @@ function create_response($text, $message)
             $hasil  = "$namauser, waktu lokal bot sekarang adalah :\n";
             $hasil .= date("d M Y")."\nPukul ".date("H:i:s");
             break;
-		case '/halo':
-		case '/halo'.$usernamebot:
-			$hasil = "Hai $namauser, Saya adalah bot ciptaan Juno\n";
-			break;
-    case '/antrian':
-  	case '/antrian'.$usernamebot:
 
-        $file = file_get_contents("http://api.rsjd-sujarwadi.com/antrian_poli/json/");
-        $json = json_decode($file, true);
-        $result = array();
-               foreach( $json as $row ) {
-                 $result[] = $row['nama_bagian'].', No. Antrian '.$row['sdh_panggil'].' dari '.$row['jml_pasien'];
-               };
-        //print_r($result);
-        $result_string = implode("\n",$result);
+    		case '/halo':
+    		case '/halo'.$usernamebot:
+    		    $hasil = "Hai $namauser, Saya adalah bot ciptaan Juno\n";
+    		    break;
 
+        case '/antrian':
+      	case '/antrian'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli");
+            $json = json_decode($file, true);
+            $result = array();
+                   foreach( $json as $row ) {
+                     $result[] = $row['nama_bagian']."\n".'Sedang dipanggil No. '.$row['no_urut_poli'].' dari '.$row['jml_pasien']."\n";
+                   };
+            //print_r($result);
+            $result_string = implode("\n",$result);
 
-  			$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini\n $result_string";
-  			break;
-		case '/guide':
-		case '/guide'.$usernamebot:
-			$hasil = "$namauser, berikut perintah yang bisa saya lakukan :\n".
-			"/guide = List Perintah \n".
-      "/halo = Memperkenalkan diri \n".
-			"/antrian = Menampilkan Antrian Semua Poli\n".
-			"/antrian1 = Menampilkan Antrian Poli Jiwa\n".
-			"/antrian2 = Menampilkan Antrian Poli Dalam\n".
-			"/antrian3 = Menampilkan Antrian Poli Syaraf 1\n".
-			"/antrian4 = Menampilkan Antrian Poli Syaraf 2\n".
-			"/antrian5 = Menampilkan Antrian Poli Gigi\n";
-			break;
+      			$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result_string";
+      			break;
+
+        case '/antrian1':
+        case '/antrian1'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli/9101");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_bagian']."\n".'Sedang dipanggil No '.$djson['no_urut_poli'].' dari '.$djson['jml_pasien']."\n".'yang belum dipanggil ada '. $djson['blm_panggil'];
+
+      			$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+      			break;
+
+        case '/antrian2':
+        case '/antrian2'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli/9109");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_bagian']."\n".'Sedang dipanggil No '.$djson['no_urut_poli'].' dari '.$djson['jml_pasien']."\n".'yang belum dipanggil ada '. $djson['blm_panggil'];
+
+            $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+       			break;
+
+        case '/antrian3':
+        case '/antrian3'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli/9104");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_bagian']."\n".'Sedang dipanggil No '.$djson['no_urut_poli'].' dari '.$djson['jml_pasien']."\n".'yang belum dipanggil ada '. $djson['blm_panggil'];
+
+      			$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+            break;
+
+        case '/antrian4':
+        case '/antrian4'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli/9105");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_bagian']."\n".'Sedang dipanggil No '.$djson['no_urut_poli'].' dari '.$djson['jml_pasien']."\n".'yang belum dipanggil ada '. $djson['blm_panggil'];
+
+            $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+            break;
+
+        case '/antrian5':
+        case '/antrian5'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianpoli/9103");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_bagian']."\n".'Sedang dipanggil No '.$djson['no_urut_poli'].' dari '.$djson['jml_pasien']."\n".'yang belum dipanggil ada '. $djson['blm_panggil'];
+
+      			$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+            break;
+
+        case '/antrianfarmasi':
+      	case '/antrianfarmasi'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianfarmasi");
+            $json = json_decode($file, true);
+            $result = array();
+                   foreach( $json as $row ) {
+                     $result[] = $row['nama_apotek']."\n".'Sedang dipanggil No '.$row['panggil_r'].' dari '.$row['jml_pasien_r'].','."\n".'Sedang dipanggil No '.$row['panggil_n'].' dari '.$row['jml_pasien_n']."\n";
+                   };
+            //print_r($result);
+            $result_string = implode("\n",$result);
+
+        		$hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result_string";
+        		break;
+
+        case '/antrianfarmasi1':
+        case '/antrianfarmasi1'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianfarmasi/9201");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $row['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
+
+            $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+            break;
+
+        case '/antrianfarmasi2':
+        case '/antrianfarmasi2'.$usernamebot:
+            $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianfarmasi/9202");
+            $djson = json_decode($file, true);
+            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $row['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
+            $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
+            break;
+
+        case '/guide':
+    		case '/guide'.$usernamebot:
+      			$hasil = "$namauser, berikut perintah yang bisa saya lakukan  :\n \n".
+      			"/guide = List Perintah \n".
+            "/halo = Memperkenalkan diri \n".
+      			"/antrian = Menampilkan Antrian Semua Poli\n".
+      			"/antrian1 = Menampilkan Antrian Poli Jiwa\n".
+      			"/antrian2 = Menampilkan Antrian Poli Dalam\n".
+      			"/antrian3 = Menampilkan Antrian Poli Syaraf 1\n".
+      			"/antrian4 = Menampilkan Antrian Poli Syaraf 2\n".
+      			"/antrian5 = Menampilkan Antrian TKAR\n";
+            "/antrianfarmasi = Menampilkan Antrian Semua Farmasi\n";
+            "/antrianfarmasi1 = Menampilkan Antrian Farmasi 1\n";
+            "/antrianfarmas2 = Menampilkan Antrian Semua Farmasi 2\n";
+      			break;
 
         // balasan default jika pesan tidak di definisikan
         default:
