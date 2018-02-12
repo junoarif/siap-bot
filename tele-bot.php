@@ -168,7 +168,7 @@ function create_response($text, $message)
         case '/antrianfarmasi1'.$usernamebot:
             $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianfarmasi/9201");
             $djson = json_decode($file, true);
-            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $row['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
+            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
 
             $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
             break;
@@ -177,7 +177,7 @@ function create_response($text, $message)
         case '/antrianfarmasi2'.$usernamebot:
             $file = file_get_contents("http://api.rsjd-sujarwadi.com/apisuja/antrianfarmasi/9202");
             $djson = json_decode($file, true);
-            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $row['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
+            $result = $djson['nama_apotek'].', Sedang dipanggil No '.$djson['panggil_r'].' dari '.$djson['jml_pasien_r']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_r']."\n".'Sedang dipanggil No '.$djson['panggil_n'].' dari '.$djson['jml_pasien_n']."\n".'yang belum dipanggil ada '. $djson['blm_panggil_n'];
             $hasil = "Hai $namauser, Berikut Situasi Antrian Saat ini :\n \n $result";
             break;
 
@@ -191,9 +191,9 @@ function create_response($text, $message)
       			"/antrian2 = Menampilkan Antrian Poli Dalam\n".
       			"/antrian3 = Menampilkan Antrian Poli Syaraf 1\n".
       			"/antrian4 = Menampilkan Antrian Poli Syaraf 2\n".
-      			"/antrian5 = Menampilkan Antrian TKAR\n";
-            "/antrianfarmasi = Menampilkan Antrian Semua Farmasi\n";
-            "/antrianfarmasi1 = Menampilkan Antrian Farmasi 1\n";
+      			"/antrian5 = Menampilkan Antrian TKAR\n".
+            "/antrianfarmasi = Menampilkan Antrian Semua Farmasi\n".
+            "/antrianfarmasi1 = Menampilkan Antrian Farmasi 1\n".
             "/antrianfarmas2 = Menampilkan Antrian Semua Farmasi 2\n";
       			break;
 
