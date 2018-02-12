@@ -194,7 +194,7 @@ function create_response($text, $message)
       			"/antrian5 = Menampilkan Antrian TKAR\n".
             "/antrianfarmasi = Menampilkan Antrian Semua Farmasi\n".
             "/antrianfarmasi1 = Menampilkan Antrian Farmasi 1\n".
-            "/antrianfarmas2 = Menampilkan Antrian Semua Farmasi 2\n";
+            "/antrianfarmas2 = Menampilkan Antrian Farmasi 2\n";
       			break;
 
         // balasan default jika pesan tidak di definisikan
